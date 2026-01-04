@@ -41,7 +41,7 @@ export function Portfolio() {
       category: 'SaaS',
       description: 'A complete SaaS solution for company name brainstorming, validation, and domain acquisition.',
       techStack: ['React', 'TypeScript', 'Tailwind CSS','Node.js'],
-      image: '/namae.png',
+      image: './namae.png',
       liveLink: 'https://namae.dev/',
       githubLink: 'https://github.com/uetchy/namae'
     },
@@ -50,7 +50,7 @@ export function Portfolio() {
       category: 'SaaS',
       description: 'Text snapping automation to create short video containing text snippets from your chosen words',
       techStack: ['Node.js', 'React', 'Python', 'WebSockets', 'Docker'],
-      image: 'ai-text-snapper.png',
+      image: './media/ai-text-snapper.png',
       liveLink: 'https://ai-text-snapper.vercel.app/',
       githubLink: 'https://github.com/LukasPurbaW/text_snapper'
     },
@@ -59,7 +59,7 @@ export function Portfolio() {
       category: 'SaaS',
       description: 'Music player and recommendation system for Hololive fanbase to discover and enjoy music from their favorite VTubers.',
       techStack: ['Node.js', 'React', 'Python', 'WebSockets', 'Docker'],
-      image: 'musicdex.png',
+      image: './media/musicdex.png',
       liveLink: 'https://music.holodex.net/org/Hololive',
       githubLink: 'https://github.com/HolodexNet/Musicdex'
     }

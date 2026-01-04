@@ -59,7 +59,7 @@ export function Portfolio() {
       category: 'SaaS',
       description: 'Music player and recommendation system for Hololive fanbase to discover and enjoy music from their favorite VTubers.',
       techStack: ['Node.js', 'React', 'Python', 'WebSockets', 'Docker'],
-      image: 'musicdex.png',
+      image: '/musicdex.png',
       liveLink: 'https://music.holodex.net/org/Hololive',
       githubLink: 'https://github.com/HolodexNet/Musicdex'
     }
