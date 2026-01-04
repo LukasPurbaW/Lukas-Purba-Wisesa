@@ -10,13 +10,13 @@ export function Footer() {
     {
       name: 'GitHub',
       icon: Github,
-      url: 'https://github.com/lukaspurbaw',
+      url: 'https://github.com/yourusername',
       ariaLabel: 'Visit my GitHub profile'
     },
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: 'https://linkedin.com/in/lukaspurbaw',
+      url: 'https://linkedin.com/in/yourusername',
       ariaLabel: 'Connect with me on LinkedIn'
     },
     {
@@ -57,7 +57,7 @@ export function Footer() {
 
         {/* Copyright and Credits */}
         <div className="text-center space-y-2">
-          <p className="mb-2 text-white">© 2026  Lukas Purba Wisesa. All rights reserved.</p>
+          <p className="mb-2 text-white">© 2026 Alex Morgan. All rights reserved.</p>
           <p className="text-slate-400">
             Built with React, TypeScript, and Tailwind CSS
           </p>
