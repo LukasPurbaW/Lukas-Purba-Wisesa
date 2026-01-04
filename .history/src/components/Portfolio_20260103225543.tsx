@@ -1,0 +1,172 @@
+import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
+import { PortfolioCard, Project } from './PortfolioCard';
+
+/**
+ * Portfolio Component
+ * Unified skills showcase with filterable projects
+ * Categorized by Web, SaaS, and AI/ML
+ */
+export function Portfolio() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<'All' | 'Web' | 'SaaS' | 'AI/ML'>('All');
+
+  // Intersection Observer for scroll-triggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('portfolio');
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
+
+  // Portfolio projects data
+  const projects: Project[] = [
+    {
+      title: 'E-Commerce Platform Redesign',
+      category: 'Web',
+      description: 'A complete frontend overhaul for a growing retail brand, focusing on conversion optimization and mobile-first design.',
+      problem: 'The existing site had a 68% mobile bounce rate and poor conversion metrics. Users struggled to find products and complete checkout.',
+      solution: 'Implemented a modern React-based architecture with optimized product discovery, streamlined checkout flow, and responsive design system.',
+      impact: 'Reduced bounce rate by 42%, increased mobile conversions by 156%, and improved average session duration by 3.2 minutes.',
+      techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Stripe API'],
+      image: 'https://images.unsplash.com/photo-1643116774075-acc00caa9a7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGV8ZW58MXx8fHwxNzY3MjE3OTc0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      liveLink: '#',
+      githubLink: '#'
+    },
+    {
+      title: 'Project Management SaaS',
+      category: 'SaaS',
+      description: 'Multi-tenant SaaS platform for distributed teams, enabling real-time collaboration and project tracking at scale.',
+      problem: 'Teams needed a unified workspace that could handle complex workflows, real-time updates, and scale to thousands of users without performance degradation.',
+      solution: 'Built a microservices architecture with WebSocket-based real-time sync, Redis caching, and PostgreSQL for data persistence. Implemented role-based access control and multi-tenancy.',
+      impact: 'Successfully onboarded 50+ organizations with 5,000+ active users. Platform maintains 99.9% uptime and handles 2M+ daily API requests.',
+      techStack: ['Node.js', 'React', 'PostgreSQL', 'Redis', 'WebSockets', 'Docker', 'AWS'],
+      image: 'https://images.unsplash.com/photo-1742997734865-71d10c491be5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYWFzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc2NzIwMjAwMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      liveLink: '#'
+    },
+    {
+      title: 'Customer Churn Prediction Model',
+      category: 'AI/ML',
+      description: 'Machine learning system that predicts customer churn with 89% accuracy, enabling proactive retention strategies.',
+      problem: 'SaaS company was losing 15% of customers annually without understanding why or when they would leave.',
+      solution: 'Developed an ensemble model combining gradient boosting and neural networks, trained on behavioral data, usage patterns, and support interactions. Deployed with real-time inference API.',
+      impact: 'Reduced churn by 34% through early intervention. Saved the company $2.3M in annual recurring revenue by identifying at-risk accounts 30 days before cancellation.',
+      techStack: ['Python', 'TensorFlow', 'Scikit-learn', 'FastAPI', 'PostgreSQL', 'Docker'],
+      image: 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzY3MjQ1MTU1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      githubLink: '#'
+    },
+    {
+      title: 'Analytics Dashboard & Data Pipeline',
+      category: 'SaaS',
+      description: 'Real-time analytics platform processing millions of events daily, providing actionable insights for decision-makers.',
+      problem: 'Marketing team relied on manual CSV exports and had no visibility into campaign performance until days after launch.',
+      solution: 'Built event-driven data pipeline using Kafka for streaming, aggregated data in real-time, and created interactive dashboards with drill-down capabilities.',
+      impact: 'Enabled real-time decision making, reduced time-to-insight from 3 days to 5 seconds, and increased campaign ROI by 78% through faster iteration.',
+      techStack: ['React', 'D3.js', 'Apache Kafka', 'ClickHouse', 'Python', 'Kubernetes'],
+      image: 'https://images.unsplash.com/photo-1742997734865-71d10c491be5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYWFzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc2NzIwMjAwMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      liveLink: '#'
+    },
+    {
+      title: 'Natural Language Search Engine',
+      category: 'AI/ML',
+      description: 'Semantic search system using transformer models to understand user intent and deliver relevant results.',
+      problem: 'Keyword-based search was returning poor results. Users had to know exact terms, and couldn\'t ask questions naturally.',
+      solution: 'Implemented sentence transformers for semantic embeddings, vector similarity search with FAISS, and fine-tuned BERT for query understanding.',
+      impact: 'Improved search relevance by 67%, increased user engagement by 43%, and reduced zero-result queries from 23% to 4%.',
+      techStack: ['Python', 'Transformers', 'FAISS', 'FastAPI', 'Elasticsearch', 'React'],
+      image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwbGVhcm5pbmd8ZW58MXx8fHwxNzY3MjQ1MTU1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      githubLink: '#'
+    },
+    {
+      title: 'Component Library & Design System',
+      category: 'Web',
+      description: 'Comprehensive design system and component library enabling consistent UI across multiple products.',
+      problem: 'Engineering teams were rebuilding the same components, creating inconsistent experiences and wasting development time.',
+      solution: 'Created a themeable component library with React, TypeScript, and comprehensive documentation. Implemented automated visual regression testing.',
+      impact: 'Reduced component development time by 70%, improved design consistency across 8 products, and accelerated new feature delivery by 40%.',
+      techStack: ['React', 'TypeScript', 'Storybook', 'CSS-in-JS', 'Chromatic', 'NPM'],
+      image: 'https://images.unsplash.com/photo-1643116774075-acc00caa9a7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGV8ZW58MXx8fHwxNzY3MjE3OTc0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      githubLink: '#'
+    }
+  ];
+
+  // Filter projects based on active filter
+  const filteredProjects = activeFilter === 'All' 
+    ? projects 
+    : projects.filter(project => project.category === activeFilter);
+
+  const filters: Array<'All' | 'Web' | 'SaaS' | 'AI/ML'> = ['All', 'Web', 'SaaS', 'AI/ML'];
+
+  return (
+    <section id="portfolio" className="min-h-screen px-6 lg:px-8 py-20">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <h2 className="mb-4 text-white">What I Build</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto mb-6"></div>
+          <p className="text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Every project is an opportunity to solve real problems. Here's a selection of work that 
+            demonstrates how web development, SaaS architecture, and machine learning come together 
+            to create meaningful impact.
+          </p>
+        </motion.div>
+
+        {/* Filter Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-3 mb-12"
+        >
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-6 py-2 rounded-full transition-all ${
+                activeFilter === filter
+                  ? 'bg-cyan-500 text-slate-900 shadow-lg shadow-cyan-500/50'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600'
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <PortfolioCard key={project.title} project={project} index={index} />
+          ))}
+        </div>
+
+        {/* Empty state */}
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-muted-foreground">No projects found in this category.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
